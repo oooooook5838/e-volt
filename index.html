@@ -3,97 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BMW E92 M3 - The Ultimate Driving Machine</title>
+    <title>BMW E92 M3 Coupé</title>
     <style>
         :root {
-            --bg-color: #0b0e14;
+            --bg: #0b0e14;
             --card-bg: #151a23;
-            --accent-color: #d4af37;
-            --accent-blue: #0066bf;
+            --accent: #d4af37;
             --text-main: #f0f4f8;
             --text-sub: #94a3b8;
-            --border-color: #2a3441;
+            --border: #2a3441;
         }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: var(--bg-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg);
             color: var(--text-main);
-            line-height: 1.6;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             padding: 20px;
         }
-
         .container {
-            max-width: 900px;
+            max-width: 800px;
             width: 100%;
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
         }
-
-        .hero-image {
+        .hero-img {
             width: 100%;
-            height: 420px;
+            height: 380px;
             object-fit: cover;
             display: block;
-            border-bottom: 1px solid var(--border-color);
         }
-
-        .content {
-            padding: 40px;
-        }
-
+        .content { padding: 32px; }
         .badge {
             display: inline-block;
             background: linear-gradient(135deg, #0066bf, #e01921);
             color: #fff;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 800;
-            letter-spacing: 2px;
-            padding: 6px 14px;
-            border-radius: 30px;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-        }
-
-        h1 {
-            font-size: 36px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
+            padding: 4px 12px;
+            border-radius: 20px;
             margin-bottom: 12px;
-            background: linear-gradient(90deg, #ffffff, #94a3b8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
         }
-
+        h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+            color: #fff;
+        }
         .subtitle {
-            font-size: 16px;
             color: var(--text-sub);
-            margin-bottom: 35px;
-            font-weight: 400;
-            border-left: 3px solid var(--accent-color);
-            padding-left: 12px;
+            font-size: 15px;
+            margin-bottom: 28px;
+            border-left: 3px solid var(--accent);
+            padding-left: 10px;
         }
-
-        .features-grid {
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 20px;
-            margin-bottom: 35px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-bottom: 28px;
         }
+        .card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border);
+            padding: 18px;
+            border-radius: 10px;
+            transition: 0.2s;
+        }
+        .card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+        .card h3 {
+            color: var(--accent);
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+        .card p {
+            color: var(--text-sub);
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #0066bf, #004080);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn:hover { background: #0052a3; }
+        #status {
+            margin-top: 12px;
+            text-align: center;
+            color: var(--accent);
+            font-size: 14px;
+            font-weight: bold;
+            min-height: 20px;
+        }
+    </style>
+</head>
+<body>
 
-        .feature-card {
-            background-color: rgba(255, 255, 255, 0.02);
-            border:
+    <div class="container">
+        <img class="hero-img" src="https://www.bmw-m.com/content/dam/bmw/marketBMW_M/common/topics/magazine-article-pool/2020/bmw-m3-e90-e92-e93/bmw-m3-e92-e90-and-e93-02.jpg" alt="BMW E92 M3">
+        
+        <div class="content">
+            <span class="badge">BMW M POWER</span>
+            <h1>BMW E92 M3 Coupé</h1>
+            <p class="subtitle">E93 컨버터블의 기반이 되는 순수 드라이빙 감성의 2도어 고성능 쿠페</p>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>⚡ 가볍고 빠른 성능</h3>
+                    <p>하드탑이 없어 E93보다 약 180kg 가볍고, 제로백 4.6초로 훨씬 민첩합니다.</p>
+                </div>
+                <div class="card">
+                    <h3>🏁 탄소섬

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>e-volt 테스트 페이지</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+            max-width: 400px;
+            width: 90%;
+        }
+        h1 {
+            color: #58a6ff;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #8b949e;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+        button {
+            background-color: #238636;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background-color: #2ea043;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #7ee787;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>⚡ e-volt</h1>
+        <p>GitHub Pages 연동 테스트용 기본 페이지입니다.</p>
+        <button onclick="clickMe()">클릭해보세요!</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        let count = 0;
+        function clickMe() {
+            count++;
+            document.getElementById('result').innerText = `버튼을 ${count}번 누르셨습니다! 🚀`;
+        }
+    </script>
+
+</body>
+</html>

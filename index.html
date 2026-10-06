@@ -4,92 +4,162 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BMW E92 M3</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <style>
         :root {
             --bg: #0b0e14;
             --card: #151a23;
             --accent: #d4af37;
             --text: #f0f4f8;
-            --sub: #94a3b8;
+            --sub: #a3adbf;
             --border: #2a3441;
             --m-red: #e01921;
-            --m-light: #0066bf;
+            --m-dark: #1c3f94;
+            --m-light: #53b1e8;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); display: flex; justify-content: center; padding: 30px 20px; }
-        .container { max-width: 800px; width: 100%; background: var(--card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.6); }
-        .hero { padding: 40px 32px; background: rgba(255,255,255,0.01); border-bottom: 1px solid var(--border); text-align: center; }
-        .hero h1 { font-size: 36px; margin-bottom: 10px; color: #fff; }
-        .hero .lead { color: var(--sub); font-size: 16px; margin-bottom: 24px; }
-        
-        /* 배기음 버튼 스타일 */
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
+            background: var(--bg); color: var(--text); line-height: 1.7;
+        }
+
+        /* 첫 화면: 사진 */
+        .hero {
+            position: relative; min-height: 100vh; min-height: 100svh;
+            display: flex; align-items: flex-end;
+            background:
+                linear-gradient(180deg, rgba(11,14,20,0.15) 0%, rgba(11,14,20,0.55) 60%, var(--bg) 100%),
+                url("images.jpg") center / cover no-repeat;
+        }
+        .hero-inner { width: min(1000px, 100% - 40px); margin: 0 auto; padding: 0 0 90px; }
+        .stripe { display: flex; width: 84px; height: 4px; margin-bottom: 24px; }
+        .stripe i { flex: 1; }
+        .stripe i:nth-child(1) { background: var(--m-light); }
+        .stripe i:nth-child(2) { background: var(--m-dark); }
+        .stripe i:nth-child(3) { background: var(--m-red); }
+        .hero h1 { font-size: clamp(40px, 9vw, 88px); line-height: 1.05; letter-spacing: -0.02em; color: #fff; margin-bottom: 14px; }
+        .hero .lead { color: #cdd5e1; font-size: clamp(15px, 2vw, 18px); max-width: 560px; }
+
+        /* 배기음 버튼 */
         .engine-btn {
+            margin-top: 28px;
             display: inline-flex; align-items: center; gap: 10px;
-            padding: 14px 28px; border: 1px solid rgba(233,236,241,0.45);
-            background: rgba(13,20,32,0.5); backdrop-filter: blur(8px);
+            padding: 14px 28px; border: 1px solid rgba(233,236,241,0.5);
+            background: rgba(13,20,32,0.45); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
             color: var(--text); font-size: 15px; font-weight: 600;
             border-radius: 8px; cursor: pointer; transition: 0.3s;
         }
         .engine-btn:hover { border-color: var(--text); background: rgba(13,20,32,0.8); }
+        .engine-btn:focus-visible { outline: 2px solid var(--m-light); outline-offset: 4px; }
         .engine-btn i { width: 10px; height: 10px; border-radius: 50%; background: var(--sub); transition: 0.3s; }
         .engine-btn[aria-pressed="true"] i { background: var(--m-red); box-shadow: 0 0 12px var(--m-red); }
-        .engine-note { display: block; margin-top: 10px; font-size: 13px; color: var(--sub); }
+        .engine-note { display: block; margin-top: 10px; font-size: 13px; color: #b5bfce; }
 
-        .content { padding: 32px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 20px; }
-        .spec { background: rgba(255,255,255,0.02); border: 1px solid var(--border); padding: 20px; border-radius: 12px; }
-        .figure { font-size: 28px; font-weight: 800; color: var(--accent); margin-bottom: 8px; }
+        /* 스크롤 안내 */
+        .scroll-cue {
+            position: absolute; left: 50%; bottom: 24px; transform: translateX(-50%);
+            color: #cdd5e1; font-size: 13px; text-decoration: none; text-align: center;
+        }
+        .scroll-cue::after {
+            content: ""; display: block; width: 1px; height: 28px; margin: 8px auto 0;
+            background: linear-gradient(var(--text), transparent);
+        }
+
+        /* 본문 */
+        .container { max-width: 860px; width: calc(100% - 40px); margin: 0 auto; padding: 50px 0 40px; }
+        .intro h2 { font-size: 28px; margin-bottom: 16px; color: #fff; }
+        .intro p { color: var(--sub); font-size: 15.5px; line-height: 1.9; margin-bottom: 14px; }
+        .grid { display: grid; grid-template-columns: 1fr; gap: 18px; margin-top: 30px; }
+        .spec { background: var(--card); border: 1px solid var(--border); padding: 28px; border-radius: 14px; }
+        .figure { font-size: 32px; font-weight: 800; color: var(--accent); margin-bottom: 6px; }
         .figure small { font-size: 16px; }
-        .spec h2 { font-size: 18px; margin-bottom: 8px; color: #fff; }
-        .spec p { color: var(--sub); font-size: 14px; line-height: 1.6; }
+        .spec h2 { font-size: 20px; margin-bottom: 12px; color: #fff; }
+        .spec p { color: var(--sub); font-size: 15px; line-height: 1.85; margin-bottom: 12px; }
+        .spec p:last-child { margin-bottom: 0; }
+
+        .closing { max-width: 860px; width: calc(100% - 40px); margin: 0 auto; padding: 30px 0 70px; }
+        .closing h2 { font-size: 24px; margin-bottom: 14px; color: #fff; }
+        .closing p { color: var(--sub); font-size: 15.5px; line-height: 1.9; margin-bottom: 14px; }
+
+        footer { padding: 30px 20px 50px; text-align: center; color: var(--sub); font-size: 13px; border-top: 1px solid var(--border); }
+
+        @media (min-width: 760px) {
+            .grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (prefers-reduced-motion: no-preference) {
+            .scroll-cue::after { animation: drop 1.8s ease-in-out infinite; }
+            @keyframes drop {
+                0% { transform: scaleY(0); transform-origin: top; }
+                50% { transform: scaleY(1); transform-origin: top; }
+                51% { transform-origin: bottom; }
+                100% { transform: scaleY(0); transform-origin: bottom; }
+            }
+        }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <header class="hero">
+    <header class="hero">
+        <div class="hero-inner">
+            <div class="stripe" aria-hidden="true"><i></i><i></i><i></i></div>
             <h1>BMW E92 M3</h1>
             <p class="lead">E93 컨버터블의 기반이 되는 2도어 쿠페. 더 가볍고, 더 단단하고, 더 순수합니다.</p>
-            
-            <!-- 배기음 버튼 -->
+
             <button class="engine-btn" id="engineBtn" aria-pressed="false">
                 <i></i><span>시동 걸고 배기음 듣기</span>
             </button>
             <small class="engine-note">소리가 나니 볼륨을 확인해주세요.</small>
-        </header>
+        </div>
+        <a class="scroll-cue" href="#specs">SCROLL</a>
+    </header>
 
-        <main class="content">
-            <div class="grid">
-                <section class="spec">
-                    <div class="figure">−180 <small>kg</small></div>
-                    <h2>가볍고 빠른 성능</h2>
-                    <p>하드탑이 없어 E93보다 약 180kg 가볍고, 제로백 4.6초로 더 민첩합니다.</p>
-                </section>
+    <main class="container" id="specs">
+        <section class="intro">
+            <h2>가장 균형 잡힌 M3</h2>
+            <p>BMW E92 M3는 M3 역사에서 가장 균형 잡힌 쿠페로 손꼽히는 모델입니다. 자연흡기 V8 엔진, 가벼운 차체, 운전자 중심의 설계가 한 대에 모두 담겨 있습니다.</p>
+            <p>E93 컨버터블과 같은 뿌리를 공유하지만, 지붕을 열고 닫는 하드탑 구조가 없다는 점에서 성격이 크게 다릅니다. 불필요한 무게와 구조적 타협을 덜어낸 덕분에, 이 차는 처음부터 달리기를 위해 만들어진 쿠페라는 인상을 줍니다.</p>
+            <p>아래에서 E92 M3가 컨버터블과 어떻게 다른지, 그리고 왜 지금까지도 많은 사랑을 받는지 하나씩 살펴보겠습니다.</p>
+        </section>
 
-                <section class="spec">
-                    <div class="figure">CFRP</div>
-                    <h2>탄소섬유 루프</h2>
-                    <p>무게 중심을 낮추기 위해 지붕에 카본 파이버 소재를 기본 적용했습니다.</p>
-                </section>
+        <div class="grid">
+            <section class="spec">
+                <div class="figure">−180 <small>kg</small></div>
+                <h2>가볍고 빠른 성능</h2>
+                <p>E92 M3에는 접이식 하드탑이 없습니다. 지붕을 접어 넣는 모터, 유압 장치, 보강 구조가 빠지면서 E93보다 약 180kg 가볍습니다. 차에서 180kg은 성인 두세 명의 몸무게에 해당하는 큰 차이입니다.</p>
+                <p>제로백은 4.6초로 더 민첩하고, 가속할 때는 물론 브레이크를 밟거나 코너에 진입할 때도 차체가 한결 가볍게 반응합니다. 같은 엔진을 얹고도 쿠페가 더 날카롭게 느껴지는 이유입니다.</p>
+            </section>
 
-                <section class="spec">
-                    <div class="figure">쿠페</div>
-                    <h2>순수한 운전 재미</h2>
-                    <p>차체 강성이 컨버터블보다 뛰어나 서킷 주행과 와인딩에 훨씬 유리합니다.</p>
-                </section>
+            <section class="spec">
+                <div class="figure">CFRP</div>
+                <h2>탄소섬유 루프</h2>
+                <p>E92 M3의 지붕은 카본 파이버(CFRP) 소재로 만들어졌고, 기본으로 적용됩니다. 탄소섬유는 강철보다 훨씬 가벼우면서도 강도가 높은 소재로, 레이싱카와 슈퍼카에서 주로 쓰입니다.</p>
+                <p>지붕은 차에서 가장 높은 위치에 있어서, 여기서 무게를 줄이면 무게 중심이 낮아집니다. 낮은 무게 중심은 코너에서 차체가 기울어지는 양을 줄이고, 방향을 바꿀 때의 안정감을 높입니다.</p>
+            </section>
 
-                <section class="spec">
-                    <div class="figure">420 <small>hp</small></div>
-                    <h2>동일한 V8 심장</h2>
-                    <p>E93과 같은 420마력 S65 V8 엔진을 공유하며 최고의 밸런스를 자랑합니다.</p>
-                </section>
-            </div>
-        </main>
-    </div>
+            <section class="spec">
+                <div class="figure">쿠페</div>
+                <h2>순수한 운전 재미</h2>
+                <p>지붕이 하나로 이어진 쿠페 차체는 컨버터블보다 차체 강성이 훨씬 뛰어납니다. 지붕을 없앤 차는 비틀림에 약해 보강재를 더 넣어야 하지만, 쿠페는 처음부터 단단한 뼈대를 갖습니다.</p>
+                <p>이 단단함은 서킷 주행과 와인딩 로드에서 가장 분명하게 드러납니다. 핸들을 돌린 만큼 차가 정확하게 움직이고, 노면 정보가 운전자에게 선명하게 전달됩니다.</p>
+            </section>
 
-    <!-- V8 사운드 합성 자바스크립트 -->
+            <section class="spec">
+                <div class="figure">420 <small>hp</small></div>
+                <h2>동일한 V8 심장</h2>
+                <p>E92와 E93 M3는 같은 420마력 S65 4.0리터 V8 엔진을 공유합니다. 터보 없이 오직 배기량과 회전수로 힘을 만드는 자연흡기 엔진이며, 높은 회전수까지 거침없이 올라가는 반응과 V8 특유의 굵고 날카로운 배기음이 가장 큰 매력입니다.</p>
+                <p>같은 심장을 쓰기 때문에 두 차의 차이는 곧 차체에서 나옵니다. 가벼운 무게, 낮은 무게 중심, 높은 강성이 더해진 E92 M3는 이 엔진의 성능을 가장 균형 있게 끌어내는 조합입니다.</p>
+            </section>
+        </div>
+    </main>
+
+    <section class="closing">
+        <h2>왜 E92 M3인가</h2>
+        <p>컨버터블이 바람과 개방감을 위한 차라면, 쿠페는 운전 그 자체를 위한 차입니다. E92 M3는 가벼움, 강성, 자연흡기 V8이라는 세 가지 요소를 한 차체에 모았고, 어느 하나가 튀지 않고 서로를 받쳐줍니다.</p>
+        <p>화려한 전자장비보다 기계의 질감과 운전자의 감각을 중시하는 사람에게, 이 차는 지금도 가장 순수한 M3 가운데 하나로 남아 있습니다.</p>
+    </section>
+
+    <footer>BMW E92 M3 · V8 · Coupe · M Performance</footer>
+
     <script>
     (function(){
       var btn=document.getElementById('engineBtn');
@@ -107,11 +177,6 @@
         if(ctx){var old=ctx;ctx=null;setTimeout(function(){old.close();},400);}
         btn.setAttribute('aria-pressed','false');
         label.textContent='시동 걸고 배기음 듣기';
-      }
-
-      function stop(){
-        if(ctx){ctx.destination.channelCount;}
-        reset();
       }
 
       function start(){
@@ -178,7 +243,7 @@
       }
 
       btn.addEventListener('click',function(){
-        if(ctx){stop();}else{start();}
+        if(ctx){reset();}else{start();}
       });
     })();
     </script>

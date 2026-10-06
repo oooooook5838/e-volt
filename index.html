@@ -1,157 +1,186 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>BMW E92 M3</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;500&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
-<style>
-:root{
-  --ink:#0d1420;
-  --deep:#131c2b;
-  --line:#2a3548;
-  --text:#e9ecf1;
-  --muted:#a3adbf;
-  --m-light:#53b1e8;
-  --m-dark:#1c3f94;
-  --m-red:#e22718;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
-  background:var(--ink);color:var(--text);
-  font-family:"Noto Sans KR",system-ui,sans-serif;font-weight:300;
-  line-height:1.9;-webkit-font-smoothing:antialiased;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMW E92 M3</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <style>
+        :root {
+            --bg: #0b0e14;
+            --card: #151a23;
+            --accent: #d4af37;
+            --text: #f0f4f8;
+            --sub: #94a3b8;
+            --border: #2a3441;
+            --m-red: #e01921;
+            --m-light: #0066bf;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); display: flex; justify-content: center; padding: 30px 20px; }
+        .container { max-width: 800px; width: 100%; background: var(--card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.6); }
+        .hero { padding: 40px 32px; background: rgba(255,255,255,0.01); border-bottom: 1px solid var(--border); text-align: center; }
+        .hero h1 { font-size: 36px; margin-bottom: 10px; color: #fff; }
+        .hero .lead { color: var(--sub); font-size: 16px; margin-bottom: 24px; }
+        
+        /* 배기음 버튼 스타일 */
+        .engine-btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 14px 28px; border: 1px solid rgba(233,236,241,0.45);
+            background: rgba(13,20,32,0.5); backdrop-filter: blur(8px);
+            color: var(--text); font-size: 15px; font-weight: 600;
+            border-radius: 8px; cursor: pointer; transition: 0.3s;
+        }
+        .engine-btn:hover { border-color: var(--text); background: rgba(13,20,32,0.8); }
+        .engine-btn i { width: 10px; height: 10px; border-radius: 50%; background: var(--sub); transition: 0.3s; }
+        .engine-btn[aria-pressed="true"] i { background: var(--m-red); box-shadow: 0 0 12px var(--m-red); }
+        .engine-note { display: block; margin-top: 10px; font-size: 13px; color: var(--sub); }
 
-/* 상단 대표 이미지 */
-.hero{
-  position:relative;min-height:92vh;display:flex;align-items:flex-end;
-  background:
-    linear-gradient(180deg,rgba(13,20,32,.2) 0%,rgba(13,20,32,.55) 55%,var(--ink) 100%),
-    url("images.jpg") center/cover no-repeat;
-}
-.hero-inner{width:min(1100px,100% - 3rem);margin:0 auto;padding:0 0 5rem}
-.stripe{display:flex;width:84px;height:4px;margin-bottom:2rem}
-.stripe i{flex:1}
-.stripe i:nth-child(1){background:var(--m-light)}
-.stripe i:nth-child(2){background:var(--m-dark)}
-.stripe i:nth-child(3){background:var(--m-red)}
-h1{
-  font-family:"Noto Serif KR",serif;font-weight:300;
-  font-size:clamp(2.8rem,8vw,6.5rem);line-height:1.05;letter-spacing:-.02em;
-}
-.lead{margin-top:1.5rem;max-width:36rem;color:var(--muted);font-size:1.08rem}
-
-/* 소개 */
-.intro{width:min(760px,100% - 3rem);margin:0 auto;padding:5rem 0 3rem}
-.intro p{color:var(--muted);font-size:1.05rem;margin-bottom:1.4rem}
-.intro p:first-child{
-  font-family:"Noto Serif KR",serif;font-weight:300;
-  font-size:clamp(1.3rem,2.6vw,1.7rem);line-height:1.7;color:var(--text);
-}
-
-/* 스펙 */
-main{width:min(1100px,100% - 3rem);margin:0 auto;padding:2rem 0 5rem}
-.spec{
-  display:grid;grid-template-columns:minmax(180px,1fr) 2fr;gap:2rem;
-  padding:3.2rem 0;border-top:1px solid var(--line);align-items:start;
-}
-.spec:last-child{border-bottom:1px solid var(--line)}
-.figure{
-  font-family:"Noto Serif KR",serif;font-weight:300;
-  font-size:clamp(2.2rem,5vw,3.6rem);line-height:1.1;
-}
-.figure small{font-size:.4em;color:var(--muted);margin-left:.3em;font-family:"Noto Sans KR",sans-serif}
-.spec h2{font-family:"Noto Serif KR",serif;font-weight:500;font-size:1.4rem;margin-bottom:.9rem}
-.spec p{color:var(--muted);max-width:40rem;margin-bottom:1rem}
-.spec p:last-child{margin-bottom:0}
-
-/* 마무리 */
-.closing{width:min(760px,100% - 3rem);margin:0 auto;padding:1rem 0 6rem}
-.closing h2{font-family:"Noto Serif KR",serif;font-weight:500;font-size:1.6rem;margin-bottom:1.2rem}
-.closing p{color:var(--muted);margin-bottom:1.4rem}
-
-footer{background:var(--deep);padding:3rem 1.5rem;text-align:center;color:var(--muted);font-size:.9rem}
-footer b{font-family:"Noto Serif KR",serif;font-weight:300;color:var(--text);font-size:1.1rem;display:block;margin-bottom:.4rem}
-
-@media(max-width:700px){
-  .spec{grid-template-columns:1fr;gap:.8rem;padding:2.4rem 0}
-  .hero{min-height:80vh}
-  .intro{padding-top:3.5rem}
-}
-@media(prefers-reduced-motion:no-preference){
-  .hero-inner{animation:rise 1.2s cubic-bezier(.2,.7,.2,1) both}
-  @keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
-}
-</style>
+        .content { padding: 32px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 20px; }
+        .spec { background: rgba(255,255,255,0.02); border: 1px solid var(--border); padding: 20px; border-radius: 12px; }
+        .figure { font-size: 28px; font-weight: 800; color: var(--accent); margin-bottom: 8px; }
+        .figure small { font-size: 16px; }
+        .spec h2 { font-size: 18px; margin-bottom: 8px; color: #fff; }
+        .spec p { color: var(--sub); font-size: 14px; line-height: 1.6; }
+    </style>
 </head>
 <body>
 
-<header class="hero">
-  <div class="hero-inner">
-    <div class="stripe" aria-hidden="true"><i></i><i></i><i></i></div>
-    <h1>BMW E92 M3</h1>
-    <p class="lead">E93 컨버터블의 기반이 되는 2도어 쿠페. 더 가볍고, 더 단단하고, 더 순수합니다.</p>
-  </div>
-</header>
+    <div class="container">
+        <header class="hero">
+            <h1>BMW E92 M3</h1>
+            <p class="lead">E93 컨버터블의 기반이 되는 2도어 쿠페. 더 가볍고, 더 단단하고, 더 순수합니다.</p>
+            
+            <!-- 배기음 버튼 -->
+            <button class="engine-btn" id="engineBtn" aria-pressed="false">
+                <i></i><span>시동 걸고 배기음 듣기</span>
+            </button>
+            <small class="engine-note">소리가 나니 볼륨을 확인해주세요.</small>
+        </header>
 
-<section class="intro">
-  <p>BMW E92 M3는 M3 역사에서 가장 균형 잡힌 쿠페로 손꼽히는 모델입니다. 자연흡기 V8 엔진, 가벼운 차체, 운전자 중심의 설계가 한 대에 모두 담겨 있습니다.</p>
-  <p>E93 컨버터블과 같은 뿌리를 공유하지만, 지붕을 열고 닫는 하드탑 구조가 없다는 점에서 성격이 크게 다릅니다. 불필요한 무게와 구조적 타협을 덜어낸 덕분에, 이 차는 처음부터 달리기를 위해 만들어진 쿠페라는 인상을 줍니다.</p>
-  <p>아래에서 E92 M3가 컨버터블과 어떻게 다른지, 그리고 왜 지금까지도 많은 사랑을 받는지 하나씩 살펴보겠습니다.</p>
-</section>
+        <main class="content">
+            <div class="grid">
+                <section class="spec">
+                    <div class="figure">−180 <small>kg</small></div>
+                    <h2>가볍고 빠른 성능</h2>
+                    <p>하드탑이 없어 E93보다 약 180kg 가볍고, 제로백 4.6초로 더 민첩합니다.</p>
+                </section>
 
-<main>
-  <section class="spec">
-    <div class="figure">−180<small>kg</small></div>
-    <div>
-      <h2>가볍고 빠른 성능</h2>
-      <p>E92 M3에는 접이식 하드탑이 없습니다. 지붕을 접어 넣는 모터, 유압 장치, 보강 구조가 빠지면서 E93보다 약 180kg 가볍습니다. 차에서 180kg은 성인 두세 명의 몸무게에 해당하는 큰 차이입니다.</p>
-      <p>이 차이는 숫자로만 나타나지 않습니다. 제로백은 4.6초로 더 민첩하고, 가속할 때는 물론 브레이크를 밟거나 코너에 진입할 때도 차체가 한결 가볍게 반응합니다. 같은 엔진을 얹고도 쿠페가 더 날카롭게 느껴지는 이유입니다.</p>
+                <section class="spec">
+                    <div class="figure">CFRP</div>
+                    <h2>탄소섬유 루프</h2>
+                    <p>무게 중심을 낮추기 위해 지붕에 카본 파이버 소재를 기본 적용했습니다.</p>
+                </section>
+
+                <section class="spec">
+                    <div class="figure">쿠페</div>
+                    <h2>순수한 운전 재미</h2>
+                    <p>차체 강성이 컨버터블보다 뛰어나 서킷 주행과 와인딩에 훨씬 유리합니다.</p>
+                </section>
+
+                <section class="spec">
+                    <div class="figure">420 <small>hp</small></div>
+                    <h2>동일한 V8 심장</h2>
+                    <p>E93과 같은 420마력 S65 V8 엔진을 공유하며 최고의 밸런스를 자랑합니다.</p>
+                </section>
+            </div>
+        </main>
     </div>
-  </section>
 
-  <section class="spec">
-    <div class="figure">CFRP</div>
-    <div>
-      <h2>탄소섬유 루프</h2>
-      <p>E92 M3의 지붕은 카본 파이버(CFRP) 소재로 만들어졌고, 기본으로 적용됩니다. 탄소섬유는 강철보다 훨씬 가벼우면서도 강도가 높은 소재로, 레이싱카와 슈퍼카에서 주로 쓰입니다.</p>
-      <p>지붕은 차에서 가장 높은 위치에 있어서, 여기서 무게를 줄이면 무게 중심이 낮아집니다. 낮은 무게 중심은 코너에서 차체가 기울어지는 양을 줄이고, 방향을 바꿀 때의 안정감을 높입니다. 검게 비치는 루프의 직조 무늬는 이 차의 성격을 보여주는 디테일이기도 합니다.</p>
-    </div>
-  </section>
+    <!-- V8 사운드 합성 자바스크립트 -->
+    <script>
+    (function(){
+      var btn=document.getElementById('engineBtn');
+      var label=btn.querySelector('span');
+      var ctx=null, timer=null;
 
-  <section class="spec">
-    <div class="figure">쿠페</div>
-    <div>
-      <h2>순수한 운전 재미</h2>
-      <p>지붕이 하나로 이어진 쿠페 차체는 컨버터블보다 차체 강성이 훨씬 뛰어납니다. 지붕을 없앤 차는 비틀림에 약해 보강재를 더 넣어야 하지만, 쿠페는 그럴 필요 없이 처음부터 단단한 뼈대를 갖습니다.</p>
-      <p>이 단단함은 서킷 주행과 와인딩 로드에서 가장 분명하게 드러납니다. 핸들을 돌린 만큼 차가 정확하게 움직이고, 노면 정보가 운전자에게 선명하게 전달됩니다. 서스펜션이 설계된 대로 일하기 때문에, 한계 근처에서도 차의 반응을 예측하기 쉽습니다.</p>
-    </div>
-  </section>
+      function drive(amount){
+        var n=256,c=new Float32Array(n);
+        for(var i=0;i<n;i++){var x=i*2/n-1;c[i]=Math.tanh(x*amount);}
+        return c;
+      }
 
-  <section class="spec">
-    <div class="figure">420<small>hp</small></div>
- <div>
-      <h2>동일한 V8 심장</h2>
-      <p>E92와 E93 M3는 같은 420마력 S65 4.0리터 V8 엔진을 공유합니다. 터보 없이 오직 배기량과 회전수로 힘을 만드는 자연흡기 엔진이며, 높은 회전수까지 거침없이 올라가는 반응과 V8 특유의 굵고 날카로운 배기음이 가장 큰 매력입니다.</p>
-      <p>같은 심장을 쓰기 때문에 두 차의 차이는 곧 차체에서 나옵니다. 가벼운 무게, 낮은 무게 중심, 높은 강성이 더해진 E92 M3는 이 엔진의 성능을 가장 균형 있게 끌어내는 조합이라고 할 수 있습니다.</p>
-    </div>
-  </section>
-</main>
+      function reset(){
+        clearTimeout(timer);
+        if(ctx){var old=ctx;ctx=null;setTimeout(function(){old.close();},400);}
+        btn.setAttribute('aria-pressed','false');
+        label.textContent='시동 걸고 배기음 듣기';
+      }
 
-<section class="closing">
-  <h2>왜 E92 M3인가</h2>
-  <p>컨버터블이 바람과 개방감을 위한 차라면, 쿠페는 운전 그 자체를 위한 차입니다. E92 M3는 가벼움, 강성, 자연흡기 V8이라는 세 가지 요소를 한 차체에 모았고, 어느 하나가 튀지 않고 서로를 받쳐줍니다.</p>
-  <p>화려한 전자장비보다 기계의 질감과 운전자의 감각을 중시하는 사람에게, 이 차는 지금도 가장 순수한 M3 가운데 하나로 남아 있습니다.</p>
-</section>
+      function stop(){
+        if(ctx){ctx.destination.channelCount;}
+        reset();
+      }
 
-<footer>
-  <b>BMW E92 M3</b>
-  V8 · Coupe · M Performance
-</footer>
+      function start(){
+        var AC=window.AudioContext||window.webkitAudioContext;
+        if(!AC){return;}
+        ctx=new AC();
+        if(ctx.resume){ctx.resume();}
+        var t=ctx.currentTime;
 
+        var o1=ctx.createOscillator();o1.type='sawtooth';
+        var o2=ctx.createOscillator();o2.type='square';
+        var o3=ctx.createOscillator();o3.type='sawtooth';
+        var lfo=ctx.createOscillator();lfo.type='sine';
+        var g1=ctx.createGain();g1.gain.value=.5;
+        var g2=ctx.createGain();g2.gain.value=.25;
+        var g3=ctx.createGain();g3.gain.value=.4;
+        var lfoGain=ctx.createGain();lfoGain.gain.value=.28;
+        var amp=ctx.createGain();amp.gain.value=.72;
+
+        var len=ctx.sampleRate*2,buf=ctx.createBuffer(1,len,ctx.sampleRate),d=buf.getChannelData(0);
+        for(var i=0;i<len;i++){d[i]=Math.random()*2-1;}
+        var noise=ctx.createBufferSource();noise.buffer=buf;noise.loop=true;
+        var bp=ctx.createBiquadFilter();bp.type='bandpass';bp.frequency.value=1100;bp.Q.value=.7;
+        var ng=ctx.createGain();ng.gain.value=.03;
+
+        var shaper=ctx.createWaveShaper();shaper.curve=drive(3);shaper.oversample='4x';
+        var filter=ctx.createBiquadFilter();filter.type='lowpass';filter.Q.value=1.2;
+        var comp=ctx.createDynamicsCompressor();
+        var master=ctx.createGain();master.gain.value=0;
+
+        o1.connect(g1);g1.connect(amp);
+        o2.connect(g2);g2.connect(amp);
+        o3.connect(g3);g3.connect(amp);
+        noise.connect(bp);bp.connect(ng);ng.connect(amp);
+        lfo.connect(lfoGain);lfoGain.connect(amp.gain);
+        amp.connect(shaper);shaper.connect(filter);filter.connect(comp);
+        comp.connect(master);master.connect(ctx.destination);
+
+        var K=[[0,200],[.5,260],[.9,1250],[1.5,900],[2.4,900],[3.4,4500],[4.4,8000],
+               [4.45,7500],[4.5,8000],[4.55,7500],[4.6,8000],[4.65,7500],[4.7,8000],
+               [5.3,1000],[6.3,900]];
+
+        K.forEach(function(k,i){
+          var tt=t+k[0],rpm=k[1],f=rpm/15,fc=250+rpm*.55,n=.03+(rpm/8000)*.14;
+          var fn=i===0?'setValueAtTime':'linearRampToValueAtTime';
+          o1.frequency[fn](f,tt);
+          o2.frequency[fn](f/2,tt);
+          o3.frequency[fn](f/2,tt);
+          lfo.frequency[fn](f/2,tt);
+          filter.frequency[fn](fc,tt);
+          ng.gain[fn](n,tt);
+        });
+
+        master.gain.setValueAtTime(0,t);
+        master.gain.linearRampToValueAtTime(.9,t+.12);
+        master.gain.setValueAtTime(.9,t+6.3);
+        master.gain.linearRampToValueAtTime(0,t+7.1);
+
+        [o1,o2,o3,lfo,noise].forEach(function(n){n.start(t);n.stop(t+7.3);});
+
+        btn.setAttribute('aria-pressed','true');
+        label.textContent='정지';
+        timer=setTimeout(reset,7400);
+      }
+
+      btn.addEventListener('click',function(){
+        if(ctx){stop();}else{start();}
+      });
+    })();
+    </script>
 </body>
 </html>

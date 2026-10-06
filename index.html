@@ -5,128 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BMW E92 M3 Coupé</title>
     <style>
-        :root {
-            --bg: #0b0e14;
-            --card-bg: #151a23;
-            --accent: #d4af37;
-            --text-main: #f0f4f8;
-            --text-sub: #94a3b8;
-            --border: #2a3441;
-        }
+        :root { --bg: #0b0e14; --card: #151a23; --accent: #d4af37; --text: #f0f4f8; --sub: #94a3b8; --border: #2a3441; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: var(--bg);
-            color: var(--text-main);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .container {
-            max-width: 800px;
-            width: 100%;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-        }
-        .hero-img {
-            width: 100%;
-            height: 380px;
-            object-fit: cover;
-            display: block;
-        }
+        body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); display: flex; justify-content: center; padding: 20px; }
+        .container { max-width: 800px; width: 100%; background: var(--card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.6); }
+        .hero-img { width: 100%; height: 360px; object-fit: cover; display: block; }
         .content { padding: 32px; }
-        .badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #0066bf, #e01921);
-            color: #fff;
-            font-size: 11px;
-            font-weight: 800;
-            padding: 4px 12px;
-            border-radius: 20px;
-            margin-bottom: 12px;
-            letter-spacing: 1px;
-        }
-        h1 {
-            font-size: 32px;
-            margin-bottom: 8px;
-            color: #fff;
-        }
-        .subtitle {
-            color: var(--text-sub);
-            font-size: 15px;
-            margin-bottom: 28px;
-            border-left: 3px solid var(--accent);
-            padding-left: 10px;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 16px;
-            margin-bottom: 28px;
-        }
-        .card {
-            background: rgba(255,255,255,0.02);
-            border: 1px solid var(--border);
-            padding: 18px;
-            border-radius: 10px;
-            transition: 0.2s;
-        }
-        .card:hover {
-            border-color: var(--accent);
-            transform: translateY(-2px);
-        }
-        .card h3 {
-            color: var(--accent);
-            font-size: 16px;
-            margin-bottom: 6px;
-        }
-        .card p {
-            color: var(--text-sub);
-            font-size: 13px;
-            line-height: 1.5;
-        }
-        .btn {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, #0066bf, #004080);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 15px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.2s;
-        }
+        .badge { display: inline-block; background: linear-gradient(135deg, #0066bf, #e01921); color: #fff; font-size: 11px; font-weight: 800; padding: 4px 12px; border-radius: 20px; margin-bottom: 12px; }
+        h1 { font-size: 32px; margin-bottom: 8px; }
+        .subtitle { color: var(--sub); font-size: 15px; margin-bottom: 28px; border-left: 3px solid var(--accent); padding-left: 10px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 28px; }
+        .card { background: rgba(255,255,255,0.02); border: 1px solid var(--border); padding: 18px; border-radius: 10px; transition: 0.2s; }
+        .card:hover { border-color: var(--accent); transform: translateY(-2px); }
+        .card h3 { color: var(--accent); font-size: 16px; margin-bottom: 6px; }
+        .card p { color: var(--sub); font-size: 13px; line-height: 1.5; }
+        .btn { width: 100%; padding: 14px; background: linear-gradient(135deg, #0066bf, #004080); color: #fff; border: none; border-radius: 8px; font-size: 15px; font-weight: bold; cursor: pointer; }
         .btn:hover { background: #0052a3; }
-        #status {
-            margin-top: 12px;
-            text-align: center;
-            color: var(--accent);
-            font-size: 14px;
-            font-weight: bold;
-            min-height: 20px;
-        }
+        #status { margin-top: 12px; text-align: center; color: var(--accent); font-size: 14px; font-weight: bold; min-height: 20px; }
     </style>
 </head>
 <body>
-
     <div class="container">
         <img class="hero-img" src="https://www.bmw-m.com/content/dam/bmw/marketBMW_M/common/topics/magazine-article-pool/2020/bmw-m3-e90-e92-e93/bmw-m3-e92-e90-and-e93-02.jpg" alt="BMW E92 M3">
-        
         <div class="content">
             <span class="badge">BMW M POWER</span>
             <h1>BMW E92 M3 Coupé</h1>
             <p class="subtitle">E93 컨버터블의 기반이 되는 순수 드라이빙 감성의 2도어 고성능 쿠페</p>
-
             <div class="grid">
                 <div class="card">
                     <h3>⚡ 가볍고 빠른 성능</h3>
                     <p>하드탑이 없어 E93보다 약 180kg 가볍고, 제로백 4.6초로 훨씬 민첩합니다.</p>
                 </div>
                 <div class="card">
-                    <h3>🏁 탄소섬
+                    <h3>🏁 탄소섬유(CFRP) 루프</h3>
+                    <p>무게 중심을 낮추기 위해 지붕에 카본 파이버 소재를 기본 적용했습니다.</p>
+                </div>
+                <div class="card">
+                    <h3>🎯 순수한 운전 재미</h3>
+                    <p>차체 강성이 뛰어나라 서킷 주행과 와인딩에 훨씬 유리합니다.</p>
+                </div>
+                <div class="card">
+                    <h3>🔥 동일한 V8 심장</h3>
+                    <p>E93과 동일한 420마력 S65 V8 엔진을 공유하며 최고의 밸런스를 자랑합니다.</p>
+                </div>
+            </div>
+            <button class="btn" onclick="startEngine()">V8 S65 엔진 시동 걸기 🚀</button>
+            <p id="status"></p>
+        </div>
+    </div>
+    <script>
+        function startEngine() {
+            document.getElementById('status').innerText = "🔊 V8 4.2L S65 엔진 8,300 RPM 레브리밋 사운드 준비완료!";
+        }
+    </script>
+</body>
+</html>
